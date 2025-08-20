@@ -43,6 +43,9 @@ function App() {
   const headerRef = useRef(null);
   const animatedWordRef = useRef(null);
   const staticTextRefs = useRef([]);
+  const subtitleRef = useRef(null);
+  const descriptionRef = useRef(null);
+  const ctaButtonsRef = useRef(null);
   const menuRef = useRef(null);
   
   // Refs for interactive background
@@ -63,6 +66,14 @@ function App() {
 
     // Initial setup
     gsap.set(animatedWordRef.current, { opacity: 0, y: -30 });
+    gsap.set([subtitleRef.current, descriptionRef.current], { 
+      opacity: 0, 
+      y: 30 
+    });
+    gsap.set(ctaButtonsRef.current, {
+      opacity: 0,
+      y: 40
+    });
     
     // Animate in the static text first
     const staticTextTimeline = gsap.timeline();
@@ -86,7 +97,17 @@ function App() {
         duration: 0.6,
         y: 0,
         opacity: 1,
-        ease: "power2.out"
+        ease: "power2.out",
+        onComplete: () => {
+          // Animate in paragraph text and CTA buttons with staggered timing
+          gsap.to([subtitleRef.current, descriptionRef.current, ctaButtonsRef.current], {
+            duration: 0.8,
+            y: 0,
+            opacity: 1,
+            ease: "power2.out",
+            stagger: 0.2
+          });
+        }
       });
 
       // Create the infinite loop
@@ -455,17 +476,21 @@ function App() {
           </h1>
           
           {/* Subtitle */}
-          <p className="text-xl sm:text-2xl md:text-3xl text-neutral-medium font-medium mb-8 max-w-3xl mx-auto leading-relaxed">
-            Beautiful websites that work
-          </p>
+          <div className="overflow-hidden">
+            <p ref={subtitleRef} className="text-xl sm:text-2xl md:text-3xl text-neutral-medium font-medium mb-8 max-w-3xl mx-auto leading-relaxed">
+              Beautiful websites that work
+            </p>
+          </div>
           
           {/* Description */}
-          <p className="text-lg sm:text-xl text-neutral-medium/80 mb-12 max-w-2xl mx-auto leading-relaxed">
-            Web design, online stores, and digital tools that help your business grow.
-          </p>
+          <div className="overflow-hidden">
+            <p ref={descriptionRef} className="text-lg sm:text-xl text-neutral-medium/80 mb-12 max-w-2xl mx-auto leading-relaxed">
+              Web design, online stores, and digital tools that help your business grow.
+            </p>
+          </div>
           
           {/* Call to Action */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+          <div ref={ctaButtonsRef} className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <button 
               onClick={scrollToContact}
               className="bg-gradient-to-r from-cta-primary to-cta-hover text-white px-10 py-4 rounded-full text-lg font-semibold hover:shadow-2xl hover:shadow-cta-primary/25 hover:scale-105 transition-all duration-300 group"
