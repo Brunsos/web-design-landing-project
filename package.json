@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://brunsos.github.io/web-design-landing-project",
+  "homepage": "https://yqrsolutions.ca",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
