@@ -19,7 +19,7 @@ export default {
         // CTA highlight color
         cta: {
           'primary': '#ff6b35',
-          'hover': '#e55a2b',
+          'hover': '#ee5a5c',
         },
         // Extended grays
         neutral: {
