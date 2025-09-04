@@ -201,7 +201,7 @@ function App() {
     };
 
     const handleScroll = () => {
-      if (isMenuOpen) {
+      if (isMenuOpen && window.innerWidth >= 768) { // Only close on desktop (md breakpoint)
         setIsMenuOpen(false);
       }
     };
@@ -372,7 +372,7 @@ function App() {
       </nav>
 
       {/* Side Menu - Independent of navbar */}
-      <div ref={menuRef} className={`fixed top-0 right-0 h-screen w-full md:w-[480px] bg-brand-dark border-l border-brand-purple/20 transform transition-transform duration-500 ease-in-out z-[9999] ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'}`} style={{backgroundColor: '#0f0f23', opacity: 1}}>
+      <div ref={menuRef} className={`fixed top-0 right-0 h-screen w-full md:w-[480px] bg-brand-dark border-l border-brand-purple/20 transform transition-transform duration-500 ease-in-out z-[9999] overflow-y-auto ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'}`} style={{backgroundColor: '#0f0f23', opacity: 1}}>
         {/* Close Button */}
         <button 
           onClick={() => setIsMenuOpen(false)}
@@ -382,6 +382,15 @@ function App() {
         </button>
         
         <div className="p-12 pt-28">
+          {/* Logo - Mobile Only */}
+          <div className="mb-12 md:hidden">
+            <img 
+              src="/logo.svg" 
+              alt="YOR Software" 
+              className="h-10 w-auto" 
+            />
+          </div>
+
           {/* Menu Sections */}
           <div className="space-y-8">
             <a href="#services" className="block text-2xl text-white hover:text-brand-purple transition-colors" onClick={() => setIsMenuOpen(false)}>
