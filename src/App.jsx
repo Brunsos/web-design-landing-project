@@ -338,8 +338,12 @@ function App() {
         <div className="container mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             {/* Logo */}
-            <div className="text-3xl font-bold text-white">
-              Design<span className="text-brand-purple">Co</span>
+            <div className="flex items-center">
+              <img 
+                src="/logo.svg" 
+                alt="YOR Software" 
+                className="h-12 w-auto" 
+              />
             </div>
             
             {/* CTA Button and Menu - Right Side */}
@@ -779,11 +783,15 @@ function App() {
 
           {/* Bottom Bar */}
           <div className="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-brand-purple/20">
-            <div className="text-white text-xl font-bold mb-4 md:mb-0">
-              Design<span className="text-brand-purple">Co</span>
+            <div className="mb-4 md:mb-0">
+              <img 
+                src="/logo.svg" 
+                alt="YOR Software" 
+                className="h-12 w-auto" 
+              />
             </div>
             <div className="text-neutral-medium text-center md:text-right">
-              © 2025 DesignCo. All rights reserved.
+              © 2025 YOR Software. All rights reserved.
             </div>
           </div>
         </div>
